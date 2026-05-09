@@ -8,7 +8,7 @@
 // CONFIGURATION
 // Change this URL if your backend runs on a different port.
 // -----------------------------------------------------------
-const API_BASE = "https://student-management-backend-n02t.onrender.com" || "http://localhost:5000";
+const API_BASE = "https://student-management-backend-n02t.onrender.com";
 
 // -----------------------------------------------------------
 // STATE
