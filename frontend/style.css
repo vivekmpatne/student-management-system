@@ -1,0 +1,1030 @@
+/* ============================================================
+   style.css — Student Management System
+   Theme: Clean institutional dark-navy + teal accent
+   Fonts: Syne (headings) + DM Sans (body)
+   ============================================================ */
+
+/* -------------------------------------------------------
+   CSS Variables — change these to retheme the whole app
+------------------------------------------------------- */
+:root {
+  --bg-page:        #050404;         /* slightly deeper page bg */
+  --bg-card:        #12151c;         /* warmer card background */
+  --bg-card-header: #181b28;         /* darker header strip */
+  --bg-input:       #060606;         /* deep input bg */
+  --bg-table-head:  #1a1b1e;         /* table header */
+  --bg-table-row:   #15171d;         /* table row */
+  --bg-table-row-alt: #14161c;       /* NEW: alternating row */
+  --bg-table-hover: #464c69;         /* hover row */
+ 
+  --accent:         #26c0ab;         /* slightly muted professional teal */
+  --accent-dark:    #1ea090;
+  --accent-glow:    rgba(38, 192, 171, 0.14);
+  --accent-subtle:  rgba(38, 192, 171, 0.07);  /* NEW: very faint tint */
+ 
+  --text-primary:   #dde1ec;         /* slightly softer white */
+  --text-secondary: #99a3b5;         /* brighter → readable column headers */
+  --text-muted:     #5a6478;         /* NEW: very dim text (row numbers etc) */
+  --text-heading:   #f0f3fa;
+ 
+  --border-color:   #1e2130;         /* slightly deeper border */
+  --border-subtle:  rgba(255,255,255,0.05); /* NEW: ultra-subtle separator */
+  --danger:         #e86b6b;         /* slightly muted red */
+  --danger-dark:    #c95555;
+  --warning:        #e6a817;         /* NEW: muted amber for edit btn */
+ 
+  --radius-card:    12px;            /* slightly tighter radius */
+  --radius-input:   7px;
+  --radius-btn:     7px;
+  --radius-badge:   6px;             /* NEW: used for pill badges */
+ 
+  --font-heading: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;  /* NEW: for marks numbers */
+ 
+  --transition:   0.16s ease;
+  --shadow-card:  0 2px 16px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.04) inset;
+}
+ 
+
+/* -------------------------------------------------------
+   Base Reset & Body
+------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  min-height: 100vh;
+}
+
+/* -------------------------------------------------------
+   Navbar
+------------------------------------------------------- */
+.sms-navbar {
+  background: linear-gradient(180deg, #111420 0%, #0c0e15 100%);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 1px 12px rgba(0,0,0,0.4);
+  padding: 0.8rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+ 
+.sms-brand {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent) !important;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.sms-brand i {
+  font-size: 1.3rem;
+}
+
+.nav-badge {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: var(--border-color);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* -------------------------------------------------------
+   Page Header (Title + Subtitle)
+------------------------------------------------------- */
+.page-header {
+  padding: 1.5rem 0 1rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem !important;
+}
+ 
+.page-title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-heading);
+  margin: 0 0 5px 0;
+  letter-spacing: -0.6px;
+  line-height: 1.15;
+}
+ 
+.page-sub {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+/* -------------------------------------------------------
+   Card Component  (form card + table card)
+------------------------------------------------------- */
+.sms-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease;
+}
+ 
+.sms-card:hover {
+  box-shadow: 0 4px 28px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.05) inset;
+}
+
+.sms-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-card-header);
+  padding: 13px 20px 13px 17px;  /* left padding offset for border */
+  border-bottom: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent);
+  font-family: var(--font-heading);
+  font-size: 0.88rem;             /* slightly smaller = less shouty */
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.3px;
+}
+ 
+.sms-card-header i {
+  color: var(--accent);
+  opacity: 0.9;
+}
+ 
+.sms-card-body {
+  padding: 22px 24px;
+}
+
+/* -------------------------------------------------------
+   Form Labels & Inputs
+------------------------------------------------------- */
+.sms-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: var(--text-secondary);
+  margin-bottom: 7px;
+  text-transform: uppercase;
+  display: block;
+}
+
+.sms-input {
+  background-color: var(--bg-input) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-input) !important;
+  color: var(--text-primary) !important;
+  padding: 10px 14px;
+  height: 42px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  transition: border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
+}
+ 
+.sms-input:hover {
+  border-color: rgba(255,255,255,0.12) !important;
+  background-color: #0f1220 !important;
+}
+ 
+.sms-input:focus {
+  outline: none !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-glow) !important;
+  background-color: var(--bg-input) !important;
+}
+ 
+.sms-input::placeholder {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Fix dropdown arrow color for dark theme */
+.form-select.sms-input {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%238892a4' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+}
+
+/* Placeholder color */
+.sms-input::placeholder {
+  color: #444c5e;
+}
+
+/* -------------------------------------------------------
+   Primary Button (Add / Update)
+------------------------------------------------------- */
+.sms-btn-primary {
+  background-color: var(--accent);
+  color: #081210;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: var(--radius-btn);
+  padding: 10px 22px;
+  height: 42px;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  transition: background-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  white-space: nowrap;
+}
+ 
+.sms-btn-primary:hover {
+  background-color: var(--accent-dark);
+  box-shadow: 0 3px 14px rgba(38, 192, 171, 0.28);
+  transform: translateY(-1px);
+  color: #081210;
+}
+ 
+.sms-btn-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* -------------------------------------------------------
+   Student Count Badge (in table card header)
+------------------------------------------------------- */
+.student-count-badge {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--accent-glow);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 3px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* -------------------------------------------------------
+   Table
+------------------------------------------------------- */
+.sms-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  /* Bootstrap 5 CSS variable overrides */
+  --bs-table-bg:            transparent;
+  --bs-table-color:         var(--text-primary);
+  --bs-table-border-color:  var(--border-color);
+  --bs-table-hover-bg:      var(--bg-table-hover);
+  --bs-table-hover-color:   var(--text-primary);
+  --bs-body-color:          var(--text-primary);
+}
+ 
+.sms-table > :not(caption) > * > * {
+  background-color: transparent !important;
+  color: var(--text-primary);
+  border-bottom-color: var(--border-color);
+  box-shadow: none;
+}
+ 
+/* Table header */
+.sms-table thead tr {
+  background-color: var(--bg-table-head);
+}
+ 
+.sms-table thead tr > th {
+  background-color: var(--bg-table-head) !important;
+  padding: 11px 18px;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+ 
+/* Table body — alternating rows */
+.sms-table tbody tr:nth-child(odd) > td {
+  background-color: var(--bg-table-row) !important;
+}
+ 
+.sms-table tbody tr:nth-child(even) > td {
+  background-color: var(--bg-table-row-alt) !important;
+}
+ 
+.sms-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.14s ease, box-shadow 0.14s ease;
+}
+ 
+/* Hover: teal left-bar + slightly brighter row */
+.sms-table tbody tr:hover > td {
+  background-color: var(--bg-table-hover) !important;
+}
+ 
+.sms-table tbody tr:hover {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+ 
+/* Table cells */
+.sms-table tbody td {
+  padding: 13px 18px;
+  vertical-align: middle;
+  line-height: 1.45;
+}
+ 
+/* Row number — very dim */
+.sms-table tbody td:first-child {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+/* -------------------------------------------------------
+   Action Buttons (Edit / Delete in table rows)
+------------------------------------------------------- */
+.btn-edit {
+  background-color: rgba(230, 168, 23, 0.1);
+  color: #e6a817;
+  border: 1px solid rgba(230, 168, 23, 0.25);
+  border-radius: var(--radius-btn);
+  padding: 5px 13px;
+  font-size: 0.79rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  margin-right: 6px;
+  letter-spacing: 0.1px;
+  transition: background-color var(--transition), border-color var(--transition),
+  box-shadow var(--transition), transform var(--transition);
+}
+ 
+.btn-edit:hover {
+  background-color: rgba(230, 168, 23, 0.2);
+  border-color: rgba(230, 168, 23, 0.5);
+  color: #fcd34d;
+  box-shadow: 0 2px 10px rgba(230, 168, 23, 0.15);
+  transform: translateY(-1px);
+}
+ 
+.btn-edit:active { transform: translateY(0); box-shadow: none; }
+ 
+.btn-delete {
+  background-color: rgba(232, 107, 107, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(232, 107, 107, 0.25);
+  border-radius: var(--radius-btn);
+  padding: 5px 13px;
+  font-size: 0.79rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  letter-spacing: 0.1px;
+  transition: background-color var(--transition), border-color var(--transition),
+  box-shadow var(--transition), transform var(--transition);
+}
+
+.btn-delete:hover {
+  background-color: rgba(232, 107, 107, 0.2);
+  border-color: rgba(232, 107, 107, 0.5);
+  color: #fca5a5;
+  box-shadow: 0 2px 10px rgba(232, 107, 107, 0.15);
+  transform: translateY(-1px);
+}
+ 
+.btn-delete:active { transform: translateY(0); box-shadow: none; }
+/* -------------------------------------------------------
+   Loading Spinner
+------------------------------------------------------- */
+.sms-spinner {
+  color: var(--accent);
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+/* -------------------------------------------------------
+   Empty State Icon
+------------------------------------------------------- */
+.empty-icon {
+  font-size: 3rem;
+  color: var(--border-color);
+}
+
+/* -------------------------------------------------------
+   Toast Notification Variants
+------------------------------------------------------- */
+.toast.toast-success {
+  background-color: #064e3b;
+  color: #6ee7b7;
+}
+
+.toast.toast-error {
+  background-color: #450a0a;
+  color: #fca5a5;
+}
+
+/* -------------------------------------------------------
+   Cancel Edit Button (outline-secondary override)
+------------------------------------------------------- */
+.btn-outline-secondary {
+  border-color: var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.82rem;
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* -------------------------------------------------------
+   Responsive Tweaks
+------------------------------------------------------- */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .sms-card-body {
+    padding: 14px;
+  }
+
+  .sms-table thead th,
+  .sms-table tbody td {
+    padding: 10px 12px;
+  }
+}
+
+/* ============================================================
+   SUBJECT MODULE — Append these styles to your style.css
+   These are additions only — nothing above is changed.
+   ============================================================ */
+
+/* -------------------------------------------------------
+   Section Divider
+   Visual separator between Student and Subject sections
+------------------------------------------------------- */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Horizontal lines on either side of the label */
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.section-divider-label {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  padding: 0 4px;
+}
+
+.section-divider-label i {
+  color: var(--accent);
+}
+
+/* -------------------------------------------------------
+   Credits Badge
+   Used in the subjects table for the credit count
+------------------------------------------------------- */
+.credits-badge {
+  background-color: rgba(196, 181, 253, 0.12); /* soft purple tint */
+  color: #c4b5fd;
+  border: 1px solid rgba(196, 181, 253, 0.22);
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   MARKS MODULE — Append these styles to the bottom of style.css
+   These are additions only — nothing above is changed.
+   ============================================================ */
+
+/* -------------------------------------------------------
+   Grade Badges
+   Color-coded based on marks percentage:
+   O  (90–100) → green
+   A+ (80–89)  → teal
+   A  (70–79)  → blue
+   B+ (60–69)  → purple
+   B  (50–59)  → yellow
+   F  (0–49)   → red
+------------------------------------------------------- */
+.grade-badge {
+  display: inline-block;
+  padding: 3px 11px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Grade O — Outstanding */
+.grade-O {
+  background-color: rgba(52, 211, 153, 0.14);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.28);
+}
+
+/* Grade A+ — Excellent */
+.grade-Aplus {
+  background-color: rgba(45, 212, 191, 0.14);
+  color: #2dd4bf;
+  border: 1px solid rgba(45, 212, 191, 0.28);
+}
+
+/* Grade A — Very Good */
+.grade-A {
+  background-color: rgba(96, 165, 250, 0.14);
+  color: #60a5fa;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+}
+
+/* Grade B+ — Good */
+.grade-Bplus {
+  background-color: rgba(167, 139, 250, 0.14);
+  color: #a78bfa;
+  border: 1px solid rgba(167, 139, 250, 0.28);
+}
+
+/* Grade B — Above Average */
+.grade-B {
+  background-color: rgba(251, 191, 36, 0.14);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.28);
+}
+
+/* Grade F — Fail */
+.grade-F {
+  background-color: rgba(248, 113, 113, 0.14);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.28);
+}
+
+/* -------------------------------------------------------
+   Marks Value Display (number in the table)
+------------------------------------------------------- */
+.marks-value {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.marks-value span {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-left: 1px;
+}
+
+
+/* ============================================================
+   PART B — APPEND BLOCK
+   Paste everything below at the very bottom of style.css.
+   Do NOT replace anything — just paste after the last line.
+   ============================================================ */
+ 
+ 
+/* -----------------------------------------------------------
+   FIX: Bootstrap 5 Table Variable Override
+   Root cause of the white/light table backgrounds.
+   Bootstrap 5 uses CSS custom properties (--bs-table-*)
+   internally. Without overriding these, Bootstrap's default
+   light values bleed through even when we set background-color
+   on the rows directly.
+----------------------------------------------------------- */
+.sms-table {
+  /* Override Bootstrap's internal table color variables */
+  --bs-table-bg:          transparent;
+  --bs-table-color:       var(--text-primary);
+  --bs-table-border-color: var(--border-color);
+  --bs-table-striped-bg:  transparent;
+  --bs-table-striped-color: var(--text-primary);
+  --bs-table-active-bg:   var(--bg-table-hover);
+  --bs-table-active-color: var(--text-primary);
+  --bs-table-hover-bg:    var(--bg-table-hover);
+  --bs-table-hover-color: var(--text-primary);
+ 
+  /* Override Bootstrap's body color variable that affects table text */
+  --bs-body-color: var(--text-primary);
+}
+ 
+/* Force Bootstrap's <th> and <td> to respect dark theme */
+.sms-table > :not(caption) > * > * {
+  background-color: transparent !important;
+  color: var(--text-primary);
+  border-bottom-color: var(--border-color);
+  box-shadow: none; /* removes Bootstrap's inset shadow on cells */
+}
+ 
+/* Re-apply our intended row backgrounds AFTER Bootstrap override */
+.sms-table tbody tr > td {
+  background-color: var(--bg-table-row) !important;
+}
+ 
+.sms-table tbody tr:hover > td {
+  background-color: var(--bg-table-hover) !important;
+}
+ 
+/* Keep the table head dark */
+.sms-table thead tr > th {
+  background-color: var(--bg-table-head) !important;
+  color: var(--text-secondary);
+}
+ 
+ 
+/* -----------------------------------------------------------
+   FIX: Table-Responsive Scrollbar — dark themed
+   The horizontal scrollbar on small screens was white/grey.
+----------------------------------------------------------- */
+.table-responsive::-webkit-scrollbar {
+  height: 5px;
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: var(--bg-card-header);
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+ 
+ 
+/* -----------------------------------------------------------
+   IMPROVED: Marks Value in Table
+   Brighter number, smaller "/100" suffix for contrast.
+   This replaces the existing .marks-value in the marks
+   append CSS if you already added it — otherwise new.
+----------------------------------------------------------- */
+.marks-value {
+  font-family: var(--font-heading);
+  font-size: 1rem;        /* slightly larger than before */
+  font-weight: 800;
+  color: #f0f4ff;         /* near-white for high contrast */
+  letter-spacing: -0.3px;
+}
+ 
+.marks-value span {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-left: 1px;
+}
+ 
+ 
+/* -----------------------------------------------------------
+   IMPROVED: Grade Badges — higher contrast + glow on hover
+   These override the existing grade badge rules in
+   marks_styles_append.css with richer colors.
+----------------------------------------------------------- */
+.grade-badge {
+  display: inline-block;
+  padding: 4px 12px;       /* slightly more padding */
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 800;        /* bolder text */
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4); /* subtle depth */
+}
+ 
+/* Grade O — Outstanding (green) */
+.grade-O {
+  background-color: rgba(52, 211, 153, 0.18);
+  color: #6ee7b7;          /* brighter green text */
+  border: 1px solid rgba(52, 211, 153, 0.4);
+}
+ 
+/* Grade A+ — Excellent (teal) */
+.grade-Aplus {
+  background-color: rgba(45, 212, 191, 0.18);
+  color: #5eead4;          /* brighter teal text */
+  border: 1px solid rgba(45, 212, 191, 0.4);
+}
+ 
+/* Grade A — Very Good (blue) */
+.grade-A {
+  background-color: rgba(96, 165, 250, 0.18);
+  color: #93c5fd;          /* brighter blue text */
+  border: 1px solid rgba(96, 165, 250, 0.4);
+}
+ 
+/* Grade B+ — Good (purple) */
+.grade-Bplus {
+  background-color: rgba(167, 139, 250, 0.18);
+  color: #c4b5fd;          /* brighter purple text */
+  border: 1px solid rgba(167, 139, 250, 0.4);
+}
+ 
+/* Grade B — Average (amber) */
+.grade-B {
+  background-color: rgba(251, 191, 36, 0.18);
+  color: #fde68a;          /* brighter amber text */
+  border: 1px solid rgba(251, 191, 36, 0.4);
+}
+ 
+/* Grade F — Fail (red) */
+.grade-F {
+  background-color: rgba(248, 113, 113, 0.18);
+  color: #fca5a5;          /* brighter red text */
+  border: 1px solid rgba(248, 113, 113, 0.4);
+}
+ 
+ 
+/* -----------------------------------------------------------
+   IMPROVED: Credits and Department/Semester Badges
+   Better border opacity for readability on dark rows.
+----------------------------------------------------------- */
+.dept-tag {
+  background-color: rgba(45, 212, 191, 0.13);
+  color: #5eead4;
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+ 
+.sem-badge {
+  background-color: rgba(147, 197, 253, 0.15);
+  color: #bfdbfe;
+  border: 1px solid rgba(147, 197, 253, 0.35);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+ 
+.credits-badge {
+  background-color: rgba(196, 181, 253, 0.15);
+  color: #d8b4fe;
+  border: 1px solid rgba(196, 181, 253, 0.35);
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+ 
+ 
+/* -----------------------------------------------------------
+   IMPROVED: Card Header — subtle accent line on left edge
+   Adds a thin teal left-border to every card header
+   for a polished dashboard feel.
+----------------------------------------------------------- */
+.sms-card-header {
+  border-left: 3px solid var(--accent);
+}
+ 
+ 
+/* -----------------------------------------------------------
+   IMPROVED: Empty State Icon — softer, larger
+----------------------------------------------------------- */
+.empty-icon {
+  font-size: 3.5rem;
+  color: rgba(136, 146, 164, 0.25); /* more subtle */
+  display: block;
+}
+ 
+ 
+/* -----------------------------------------------------------
+   IMPROVED: Toast notifications — more visible on dark bg
+----------------------------------------------------------- */
+.toast.toast-success {
+  background-color: rgba(6, 78, 59, 0.95);
+  color: #6ee7b7;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  backdrop-filter: blur(8px);
+}
+ 
+.toast.toast-error {
+  background-color: rgba(69, 10, 10, 0.95);
+  color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+
+/* pasted new refinement patch starts here */
+
+/* --- Navbar brand: tighter and more polished ------------------- */
+.sms-brand {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--accent) !important;
+  text-decoration: none;
+  letter-spacing: -0.3px;
+}
+ 
+/* --- nav-badge: slightly more defined -------------------------- */
+.nav-badge {
+  font-size: 0.65rem;
+  letter-spacing: 1.8px;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-color);
+  padding: 4px 11px;
+  border-radius: 20px;
+}
+ 
+/* --- student-count-badge: softer pill -------------------------- */
+.student-count-badge {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid rgba(38, 192, 171, 0.3);
+  padding: 3px 11px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+ 
+/* --- Dept/Sem/Credits badges: consistent sizing, softer bg ----- */
+.dept-tag {
+  display: inline-block;
+  background-color: rgba(38, 192, 171, 0.1);
+  color: #4dd6c4;
+  border: 1px solid rgba(38, 192, 171, 0.28);
+  padding: 2px 9px;
+  border-radius: 5px;           /* slightly squared — more academic */
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+ 
+.sem-badge {
+  display: inline-block;
+  background-color: rgba(147, 197, 253, 0.1);
+  color: #93c5fd;
+  border: 1px solid rgba(147, 197, 253, 0.28);
+  padding: 2px 9px;
+  border-radius: 5px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+ 
+.credits-badge {
+  display: inline-block;
+  background-color: rgba(196, 181, 253, 0.1);
+  color: #c4b5fd;
+  border: 1px solid rgba(196, 181, 253, 0.28);
+  padding: 2px 9px;
+  border-radius: 5px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+ 
+/* --- Marks number: monospace for alignment -------------------- */
+.marks-value {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e2e8f8;
+  letter-spacing: -0.3px;
+}
+ 
+.marks-value span {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 1px;
+}
+ 
+/* --- Grade badges: clean, legible ----------------------------- */
+.grade-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+ 
+.grade-O     { background: rgba(52,211,153,0.14); color: #6ee7b7; border: 1px solid rgba(52,211,153,0.35); }
+.grade-Aplus { background: rgba(45,212,191,0.14); color: #5eead4; border: 1px solid rgba(45,212,191,0.35); }
+.grade-A     { background: rgba(96,165,250,0.14); color: #93c5fd; border: 1px solid rgba(96,165,250,0.35); }
+.grade-Bplus { background: rgba(167,139,250,0.14); color: #c4b5fd; border: 1px solid rgba(167,139,250,0.35); }
+.grade-B     { background: rgba(251,191,36,0.14); color: #fde68a; border: 1px solid rgba(251,191,36,0.35); }
+.grade-F     { background: rgba(232,107,107,0.14); color: #fca5a5; border: 1px solid rgba(232,107,107,0.35); }
+ 
+/* --- Section divider: refined fade ----------------------------- */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 2rem 0 1.5rem 0;
+}
+ 
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+}
+ 
+.section-divider-label {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+ 
+.section-divider-label i { color: var(--accent); opacity: 0.8; }
+ 
+/* --- Spinner color update -------------------------------------- */
+.sms-spinner { color: var(--accent); width: 2rem; height: 2rem; }
+ 
+/* --- Empty state ----------------------------------------------- */
+.empty-icon {
+  font-size: 3rem;
+  color: var(--border-color);
+  display: block;
+  opacity: 0.6;
+}
+ 
+/* --- Toast: more opaque on dark bg ----------------------------- */
+.toast.toast-success {
+  background-color: rgba(5, 60, 46, 0.97);
+  color: #6ee7b7;
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+.toast.toast-error {
+  background-color: rgba(60, 8, 8, 0.97);
+  color: #fca5a5;
+  border: 1px solid rgba(232, 107, 107, 0.25);
+}
+ 
+/* --- Scrollbar: stays dark ------------------------------------- */
+.table-responsive::-webkit-scrollbar { height: 4px; }
+.table-responsive::-webkit-scrollbar-track { background: var(--bg-card-header); }
+.table-responsive::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 8px; }
+.table-responsive::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+ 
+/* --- Cancel edit button override ------------------------------- */
+.btn-outline-secondary {
+  border-color: var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.79rem;
+  border-radius: var(--radius-btn) !important;
+}
+.btn-outline-secondary:hover {
+  background-color: rgba(255,255,255,0.05) !important;
+  color: var(--text-primary) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+}
+ 
+/* --- Responsive tweaks ---------------------------------------- */
+@media (max-width: 992px) {
+  .sms-card-body { padding: 18px; }
+  .sms-table thead th, .sms-table tbody td { padding: 11px 13px; }
+}
+ 
+@media (max-width: 768px) {
+  .page-title { font-size: 1.45rem; }
+  .sms-card-body { padding: 14px; }
+  .sms-table thead th, .sms-table tbody td { padding: 10px 11px; }
+  .btn-edit, .btn-delete { padding: 5px 10px; font-size: 0.76rem; }
+}
