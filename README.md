@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./frontend/assets/logo.png" width="700"/>
+  <img src="/frontend/assets/logo.png" width="700"/>
 </p>
 
 # 🎓 Student Management System
