@@ -83,6 +83,4 @@ student_mgmt_system/
 ├── package.json
 └── README.md
 
-## Author
-
-Vivek Patne
+```
