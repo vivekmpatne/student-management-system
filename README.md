@@ -1,82 +1,87 @@
-# Student Management System
+# 🎓 Student Management System
 
-A full-stack DBMS Mini Project built using HTML, CSS, JavaScript, Node.js, Express.js, and MySQL.
+A full-stack Student Management System built using HTML, CSS, JavaScript, Node.js, Express.js, and MySQL.
 
-## Features
+This project allows users to manage:
+- Students
+- Subjects
+- Marks
+- Academic records
 
-- Student Management CRUD
-- Subject Management CRUD
-- Marks Management CRUD
-- MySQL Database Integration
-- REST API Backend
-- Responsive Academic Dashboard UI
-- JOIN Queries for Marks + Subjects + Students
-- Dynamic Dropdown Population
-- Grade Calculation System
+The application supports complete CRUD operations with a responsive modern UI and cloud deployment.
 
-## Tech Stack
+---
+
+# 🚀 Live Demo
 
 Frontend:
-- HTML
-- CSS
-- JavaScript
+https://student-management-ui-two.vercel.app
 
 Backend:
+https://student-management-backend-n02t.onrender.com
+
+---
+
+# ✨ Features
+
+## 👨‍🎓 Student Management
+- Add student
+- Update student
+- Delete student
+- View all students
+
+## 📚 Subject Management
+- Add subjects
+- Manage credits
+- Update/Delete subjects
+
+## 📊 Marks Management
+- Add marks
+- Calculate grades
+- View academic performance
+- Edit/Delete marks
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+- HTML5
+- CSS3
+- Vanilla JavaScript
+
+## Backend
 - Node.js
 - Express.js
 
-Database:
+## Database
 - MySQL
 
-## Project Modules
+## Deployment
+- Vercel (Frontend)
+- Render (Backend)
+- Railway (Database)
 
-### 1. Student Management
-- Add Student
-- Edit Student
-- Delete Student
-- View All Students
+---
 
-### 2. Subject Management
-- Add Subject
-- Edit Subject
-- Delete Subject
-- Credits Management
-
-### 3. Marks Management
-- Add Marks
-- Edit Marks
-- Delete Marks
-- Grade Calculation
-- JOIN Queries
-
-## Installation
-
-### Clone Repository
+# 📂 Project Structure
 
 ```bash
-git clone <your-repo-link>
-```
-
-### Install Dependencies
-
-```bash
-npm install
-```
-
-### Run Server
-
-```bash
-npm run dev
-```
-
-### Open Frontend
-
-Open:
-frontend/index.html
-
-## Database
-
-Import SQL schema into MySQL Workbench.
+student_mgmt_system/
+│
+├── backend/
+│   ├── server.js
+│   ├── db.js
+│   ├── routes/
+│   └── .env
+│
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── package.json
+└── README.md
 
 ## Author
 
