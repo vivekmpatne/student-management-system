@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./frontend/assets/logo.png" width="700"/>
+</p>
+
 # 🎓 Student Management System
 
 A full-stack Student Management System built using HTML, CSS, JavaScript, Node.js, Express.js, and MySQL.
@@ -79,6 +83,9 @@ student_mgmt_system/
 │   ├── index.html
 │   ├── style.css
 │   └── script.js
+|   |-- assets/
+|       |--  logo.png
+|       |--  favicon.svg
 │
 ├── package.json
 └── README.md
